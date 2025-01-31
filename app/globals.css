@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 100% 98%;
+    --foreground: 240 100% 10%;
+
+    --muted: 240 20% 90%;
+    --muted-foreground: 240 20% 40%;
+
+    --popover: 240 100% 98%;
+    --popover-foreground: 240 100% 10%;
+
+    --card: 240 100% 98%;
+    --card-foreground: 240 100% 10%;
+
+    --border: 240 20% 85%;
+    --input: 240 20% 85%;
+
+    --primary: 240 100% 29%;
+    --primary-foreground: 240 100% 98%;
+
+    --secondary: 220 54% 46%;
+    --secondary-foreground: 240 100% 98%;
+
+    --accent: 55 100% 50%;
+    --accent-foreground: 240 100% 10%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 240 100% 98%;
+
+    --ring: 240 100% 29%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 100% 5%;
+    --foreground: 240 100% 90%;
+
+    --muted: 240 20% 20%;
+    --muted-foreground: 240 20% 60%;
+
+    --popover: 240 100% 5%;
+    --popover-foreground: 240 100% 90%;
+
+    --card: 240 100% 5%;
+    --card-foreground: 240 100% 90%;
+
+    --border: 240 20% 25%;
+    --input: 240 20% 25%;
+
+    --primary: 240 100% 29%;
+    --primary-foreground: 240 100% 98%;
+
+    --secondary: 220 54% 46%;
+    --secondary-foreground: 240 100% 98%;
+
+    --accent: 55 100% 50%;
+    --accent-foreground: 240 100% 10%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 240 100% 98%;
+
+    --ring: 240 100% 29%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+}
+
