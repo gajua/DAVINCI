@@ -1,69 +1,82 @@
-"use client"
+'use client';
 
-import { useState, useEffect, useRef } from "react"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import Image from "next/image"
+import { useState, useEffect, useRef } from 'react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import Image from 'next/image';
 
 // 임시 데이터 (실제로는 API에서 가져와야 합니다)
 const allShops = [
-  { id: 1, name: "레트로 빈티지", location: "서울시 강남구", thumbnail: "/placeholder.svg?height=50&width=50&text=RV" },
+  {
+    id: 1,
+    name: '레트로 빈티지',
+    location: '서울시 강남구',
+    thumbnail: '/placeholder.svg?height=50&width=50&text=RV',
+  },
   {
     id: 2,
-    name: "올드스쿨 가구점",
-    location: "서울시 마포구",
-    thumbnail: "/placeholder.svg?height=50&width=50&text=OF",
+    name: '올드스쿨 가구점',
+    location: '서울시 마포구',
+    thumbnail: '/placeholder.svg?height=50&width=50&text=OF',
   },
   {
     id: 3,
-    name: "앤티크 보물창고",
-    location: "서울시 종로구",
-    thumbnail: "/placeholder.svg?height=50&width=50&text=AT",
+    name: '앤티크 보물창고',
+    location: '서울시 종로구',
+    thumbnail: '/placeholder.svg?height=50&width=50&text=AT',
   },
   {
     id: 4,
-    name: "빈티지 파라다이스",
-    location: "서울시 용산구",
-    thumbnail: "/placeholder.svg?height=50&width=50&text=VP",
+    name: '빈티지 파라다이스',
+    location: '서울시 용산구',
+    thumbnail: '/placeholder.svg?height=50&width=50&text=VP',
   },
-  { id: 5, name: "레트로 레코드", location: "서울시 마포구", thumbnail: "/placeholder.svg?height=50&width=50&text=RR" },
-]
+  {
+    id: 5,
+    name: '레트로 레코드',
+    location: '서울시 마포구',
+    thumbnail: '/placeholder.svg?height=50&width=50&text=RR',
+  },
+];
 
 export function SearchBar() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [searchResults, setSearchResults] = useState<typeof allShops>([])
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState<typeof allShops>([]);
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsDropdownVisible(false)
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsDropdownVisible(false);
       }
-    }
+    };
 
-    document.addEventListener("mousedown", handleClickOutside)
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [])
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleSearch = (term: string) => {
-    setSearchTerm(term)
+    setSearchTerm(term);
     if (term.length > 0) {
       const filteredResults = allShops.filter(
         (shop) =>
           shop.name.toLowerCase().includes(term.toLowerCase()) ||
-          shop.location.toLowerCase().includes(term.toLowerCase()),
-      )
-      setSearchResults(filteredResults)
-      setIsDropdownVisible(true)
+          shop.location.toLowerCase().includes(term.toLowerCase())
+      );
+      setSearchResults(filteredResults);
+      setIsDropdownVisible(true);
     } else {
-      setSearchResults([])
-      setIsDropdownVisible(false)
+      setSearchResults([]);
+      setIsDropdownVisible(false);
     }
-  }
+  };
 
   return (
     <div className="relative w-full" ref={dropdownRef}>
@@ -76,18 +89,21 @@ export function SearchBar() {
           onChange={(e) => handleSearch(e.target.value)}
           onFocus={() => setIsDropdownVisible(true)}
         />
-        <Button type="submit" className="bg-davinci-yellow text-davinci-darkBlue hover:bg-davinci-yellow/90">
+        <Button
+          type="submit"
+          className="bg-davinci-yellow hover:bg-davinci-yellow/90 text-davinci-darkBlue"
+        >
           검색
         </Button>
       </form>
       {isDropdownVisible && searchResults.length > 0 && (
-        <div className="absolute z-10 w-full mt-2 bg-white border border-davinci-lightBlue rounded-md shadow-lg">
+        <div className="absolute z-10 mt-2 w-full rounded-md border border-davinci-lightBlue bg-white shadow-lg">
           {searchResults.map((shop) => (
             <Link href={`/shop/${shop.id}`} key={shop.id}>
-              <div className="p-3 hover:bg-davinci-lightBlue/10 cursor-pointer flex items-center">
-                <div className="w-12 h-12 mr-3 relative flex-shrink-0">
+              <div className="flex cursor-pointer items-center p-3 hover:bg-davinci-lightBlue/10">
+                <div className="relative mr-3 h-12 w-12 flex-shrink-0">
                   <Image
-                    src={shop.thumbnail || "/placeholder.svg"}
+                    src={shop.thumbnail || '/placeholder.svg'}
                     alt={shop.name}
                     layout="fill"
                     objectFit="cover"
@@ -95,8 +111,12 @@ export function SearchBar() {
                   />
                 </div>
                 <div>
-                  <div className="font-semibold text-davinci-darkBlue">{shop.name}</div>
-                  <div className="text-sm text-davinci-blue">{shop.location}</div>
+                  <div className="font-semibold text-davinci-darkBlue">
+                    {shop.name}
+                  </div>
+                  <div className="text-sm text-davinci-blue">
+                    {shop.location}
+                  </div>
                 </div>
               </div>
             </Link>
@@ -104,6 +124,5 @@ export function SearchBar() {
         </div>
       )}
     </div>
-  )
+  );
 }
-

@@ -36,4 +36,12 @@ next-env.d.ts
 
 # IDE
 .idea
-.vscode 
+.vscode
+
+# Prettier
+.prettierrc.json
+.prettierrc.yaml
+.prettierrc.yml
+.prettierrc.toml
+.prettier.config.js
+.prettier.config.cjs

@@ -1,33 +1,38 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import { Header } from "../components/Header"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useState } from 'react';
+import { Header } from '../components/Header';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function Login() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // 여기에 로그인 로직을 구현하세요
-    console.log("Login attempt", { email, password })
-  }
+    console.log('Login attempt', { email, password });
+  };
 
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      <main className="max-w-md mx-auto py-16 px-4">
+      <main className="mx-auto max-w-md px-4 py-16">
         <Card className="border-davinci-lightBlue shadow-lg">
           <CardHeader className="bg-davinci-blue">
-            <CardTitle className="text-3xl font-heading font-bold text-center text-white">Login to DAVINCI</CardTitle>
+            <CardTitle className="text-center font-heading text-3xl font-bold text-white">
+              Login to DAVINCI
+            </CardTitle>
           </CardHeader>
           <CardContent className="bg-white">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-davinci-darkBlue mb-1">
+                <label
+                  htmlFor="email"
+                  className="mb-1 block text-sm font-medium text-davinci-darkBlue"
+                >
                   Email
                 </label>
                 <Input
@@ -40,7 +45,10 @@ export default function Login() {
                 />
               </div>
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-davinci-darkBlue mb-1">
+                <label
+                  htmlFor="password"
+                  className="mb-1 block text-sm font-medium text-davinci-darkBlue"
+                >
                   Password
                 </label>
                 <Input
@@ -54,7 +62,7 @@ export default function Login() {
               </div>
               <Button
                 type="submit"
-                className="w-full bg-davinci-yellow hover:bg-davinci-yellow/90 text-davinci-darkBlue"
+                className="bg-davinci-yellow hover:bg-davinci-yellow/90 w-full text-davinci-darkBlue"
               >
                 Login
               </Button>
@@ -63,6 +71,5 @@ export default function Login() {
         </Card>
       </main>
     </div>
-  )
+  );
 }
-
